@@ -1,11 +1,18 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Cow
 
 class CowCreate(CreateView):
   model = Cow
   fields = ['name', 'breed', 'description', 'age']
+  
+class CowUpdate(UpdateView):
+  model = Cow
+  fields = ['breed', 'description', 'age']
 
+class CowDelete(DeleteView):
+  model = Cow
+  success_url = '/cows/'
 # View functions
 
 def home(request):

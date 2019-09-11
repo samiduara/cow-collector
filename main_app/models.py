@@ -12,3 +12,5 @@ class Cow(models.Model):
 
   def get_absolute_url(self):
     return reverse('detail', kwargs={'cow_id': self.id})
+
+cow = models.ForeignKey(Cow, on_delete=models.CASCADE)   
