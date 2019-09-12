@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Cow
+from .forms import FeedingForm
 
 class CowCreate(CreateView):
   model = Cow
@@ -27,4 +28,9 @@ def cows_index(request):
 
 def cows_detail(request, cow_id):
   cow = Cow.objects.get(id=cow_id)
-  return render(request, 'cows/detail.html', { 'cow': cow })
+  # instantiate FeedingForm to be rendered in the template
+  feeding_form = FeedingForm()
+  return render(request, 'cows/detail.html', {
+    # include the cow and feeding_form in the context
+    'cow': cow, 'feeding_form': feeding_form
+  })
