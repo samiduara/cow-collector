@@ -1,5 +1,13 @@
 from django.db import models
+from django.urls import reverse
+# add this import
+from datetime import date
 
+class Cat(models.Model):
+  ...
+  # add this new method
+  def fed_for_today(self):
+    return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
 MEALS = (
     ('B', 'Breakfast'),
     ('L', 'Lunch'),
