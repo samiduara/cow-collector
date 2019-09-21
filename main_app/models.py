@@ -1,12 +1,9 @@
 from django.db import models
 from django.urls import reverse
 # add this import
-from datetime import date
+# from datetime import date
 
-class Cat(models.Model):
-  ...
-  # add this new method
-  def fed_for_today(self):
+def fed_for_today(self):
     return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
 MEALS = (
     ('B', 'Breakfast'),
@@ -36,6 +33,10 @@ class Feeding(models.Model):
    )
   cow = models.ForeignKey(Cow, on_delete=models.CASCADE)
 
-  def __str__(self):
-    # Nice method for obtaining the friendly value of a Field.choice
-    return f"{self.get_meal_display()} on {self.date}"
+def __str__(self):
+   return f"{self.get_meal_display()} on {self.date}"
+class Meta:
+  ordering = ['-date']
+ 
+ 
+ 
