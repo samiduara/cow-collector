@@ -1,27 +1,18 @@
+<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+=======
+from django.shortcuts import render
+from django.views.generic.edit import CreateView
+>>>>>>> parent of 7fc975e... add delete
 from .models import Cow
 from .forms import FeedingForm
 
 class CowCreate(CreateView):
   model = Cow
   fields = ['name', 'breed', 'description', 'age']
-  
-class CowUpdate(UpdateView):
-  model = Cow
-  fields = ['breed', 'description', 'age']
 
-class CowDelete(DeleteView):
-  model = Cow
-  success_url = '/cows/'
-
-def add_feeding(request, cow_id):
-  form = FeedingForm(request.POST)
-  if form.is_valid():
-    new_feeding = form.save(commit=False)
-    new_feeding.cow_id = cow_id
-    new_feeding.save()
-  return redirect('detail', cow_id=cow_id)
+# View functions
 
 def home(request):
   return render(request, 'home.html')
