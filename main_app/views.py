@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-=======
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
->>>>>>> parent of 7fc975e... add delete
 from .models import Cow
-from .forms import FeedingForm
+# from .forms import FeedingForm
 
 class CowCreate(CreateView):
   model = Cow
@@ -26,15 +21,15 @@ def cows_index(request):
 
 def cows_detail(request, cow_id):
   cow = Cow.objects.get(id=cow_id)
-  feeding_form = FeedingForm()
+  #feeding_form = FeedingForm()
   return render(request, 'cows/detail.html', {
-   'cow': cow, 'feeding_form': feeding_form
+   'cow': cow, #'feeding_form': feeding_form
     })
 
-def add_feeding(request, cow_id):
-  form = FeedingForm(request.POST)
-  if form.is_valid():
-    new_feeding = form.save(commit=False)
-    new_feeding.cow_id = cow_id
-    new_feeding.save()
-  return redirect('detail', cow_id=cow_id)    
+# def add_feeding(request, cow_id):
+#   form = FeedingForm(request.POST)
+#   if form.is_valid():
+#     new_feeding = form.save(commit=False)
+#     new_feeding.cow_id = cow_id
+#     new_feeding.save()
+#   return redirect('detail', cow_id=cow_id)    
